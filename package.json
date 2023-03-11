@@ -1,5 +1,5 @@
 {
-  "name": "magic-demo",
+  "name": "memespark",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "buffer": "^6.0.3",
+    "eslint-plugin-react-hooks": "^5.0.0-next-a8875eab7-20230310",
     "magic-sdk": "^13.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

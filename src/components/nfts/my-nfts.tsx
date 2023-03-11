@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Loading from "../../images/loading.svg";
-import nftImageOne from "../../images/pepe.png";
-import nftImageTwo from "../../images/pepe.png";
-import nftImageThree from "../../images/pepe.png";
-import Spacer from "../ui/spacer";
-import CardLabel from "../ui/card-label";
-import { getNftContract } from "../../utils/contracts";
+import React, { useEffect, useState } from 'react';
+import Loading from '../../images/loading.svg';
+import nftImageOne from '../../images/pepe.png';
+import nftImageTwo from '../../images/pepe.png';
+import nftImageThree from '../../images/pepe.png';
+import Spacer from '../ui/spacer';
+import CardLabel from '../ui/card-label';
+import { getNftContract } from '../../utils/contracts';
 
 const NFTDisplay = ({ id, name }: { id: string; name: string }) => {
   const getNftImage = () => {
@@ -21,9 +21,9 @@ const NFTDisplay = ({ id, name }: { id: string; name: string }) => {
 
   return (
     <div className="nft code">
-      <div className="flex-row" style={{ justifyContent: "flex-start" }}>
+      <div className="flex-row" style={{ justifyContent: 'flex-start' }}>
         <img src={getNftImage()} alt="nft-logo" />
-        <div style={{ marginLeft: "12px" }}>
+        <div style={{ marginLeft: '12px' }}>
           <div className="nft-name">{name}</div>
           <Spacer size={5} />
           <div>Token ID: {id}</div>
@@ -42,13 +42,13 @@ const MyNfts = () => {
   const [nftData, setNftData] = useState<NftDataType[] | undefined>();
   const [isRefreshing, setIsRefreshing] = useState(false);
   const contract = getNftContract();
-  const publicAddress = localStorage.getItem("user");
+  const publicAddress = localStorage.getItem('user');
 
   const formatNftMetadata = (nftIds: string[], tokenURIs: string[]) => {
     return nftIds.map((nftId: string, i: number) => {
       return {
         tokenId: nftId,
-        tokenURI: tokenURIs[i]
+        tokenURI: tokenURIs[i],
       };
     });
   };
@@ -56,9 +56,7 @@ const MyNfts = () => {
   const getOwnedNfts = async () => {
     if (!isRefreshing) {
       try {
-        const nftIds = await contract.methods
-          .getNftsByAddress(publicAddress)
-          .call();
+        const nftIds = await contract.methods.getNftsByAddress(publicAddress).call();
         const tokenURIPromises = nftIds.map(async (nftId: string) => {
           return await contract.methods.tokenURI(nftId).call();
         });
@@ -75,13 +73,13 @@ const MyNfts = () => {
     if (!nftData) {
       getOwnedNfts();
     }
-  }, []);
+  });
 
   return (
     <div>
       <CardLabel
-        style={{ height: "20px" }}
-        leftHeader="My NFTs"
+        style={{ height: '20px' }}
+        leftHeader="Meme"
         rightAction={
           isRefreshing ? (
             <div className="loading-container">
@@ -94,7 +92,6 @@ const MyNfts = () => {
                 setTimeout(() => {
                   setIsRefreshing(false);
                 }, 500);
-                getOwnedNfts();
               }}
             >
               Refresh
@@ -104,18 +101,12 @@ const MyNfts = () => {
       />
       {nftData && nftData.length > 0 ? (
         <div className="nft-list">
-          {nftData.map((nft) => {
-            return (
-              <NFTDisplay
-                id={nft.tokenId}
-                key={nft.tokenId}
-                name={nft.tokenURI}
-              />
-            );
+          {nftData.map(nft => {
+            return <NFTDisplay id={nft.tokenId} key={nft.tokenId} name={nft.tokenURI} />;
           })}
         </div>
       ) : (
-        <div className="code" style={{ color: "#777679" }}>
+        <div className="code" style={{ color: '#777679' }}>
           No NFTs in wallet
         </div>
       )}

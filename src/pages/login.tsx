@@ -4,7 +4,6 @@ import Links from "../components/links";
 import Network from "../components/network";
 import ConnectButton from "../components/ui/connect-button";
 import Spacer from "../components/ui/spacer";
-import LoginPageBackground from "../images/login.svg";
 import { magic } from "../libs/magic";
 
 interface Props {

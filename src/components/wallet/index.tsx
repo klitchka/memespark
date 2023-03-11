@@ -47,7 +47,7 @@ const UserInfo = ({ setAccount }: Props) => {
 
   useEffect(() => {
     getBalance();
-  }, []);
+  },);
 
   return (
     <Card>
