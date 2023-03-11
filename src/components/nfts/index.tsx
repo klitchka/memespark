@@ -9,7 +9,7 @@ import CardHeader from '../ui/card-header';
 export const NFTs = () => {
   return (
     <Card>
-      <CardHeader id="nfts">NFTs</CardHeader>
+      <CardHeader id="nfts">Memes</CardHeader>
       <MintNft />
       <Divider />
       <MyNfts />

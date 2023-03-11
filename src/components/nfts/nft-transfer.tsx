@@ -48,7 +48,7 @@ const NftTransfer = () => {
 
   return (
     <div>
-      <CardLabel leftHeader="Transfer NFT" />
+      <CardLabel leftHeader="Transfer Meme" />
       <FormInput
         value={toAddress}
         onChange={(e: any) => setToAddress(e.target.value)}
